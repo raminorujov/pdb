@@ -1,0 +1,21 @@
+zuul :
+  routes:
+
+    user-service:
+      serviceId: user-service
+      path: /user/**
+      stripPrefix: false
+
+    stock-service:
+      serviceId: stock-service
+      path: /stock/**
+      stripPrefix: false
+
+    user-stock-service:
+      serviceId: user-stock-service
+      path: /user-stock/**
+      stripPrefix: false
+
+  #    notification-service: /notification/**
+
+  sensitiveHeaders : Authorization

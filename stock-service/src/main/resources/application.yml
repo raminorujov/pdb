@@ -1,0 +1,28 @@
+spring :
+  application :
+    name : user-service
+  h2 :
+    console :
+      enabled : true
+  datasource:
+    driver-class-name : org.h2.Driver
+    url : jdbc:h2:mem:users;DB_CLOSE_DELAY=-1
+    username : sa
+    password :
+
+
+server :
+  port : 9090
+
+eureka:
+  instance:
+    prefer-ip-address: false
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+jwt :
+  secret : raminorujov
+  get :
+    token:
+      uri : /authenticate

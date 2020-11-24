@@ -1,0 +1,82 @@
+version: '3'
+services:
+
+  discovery-service:
+    container_name: eureka-server
+    build:
+      context: .
+      dockerfile: discovery-service/Dockerfile
+    image: raminorujov/discovery-service:latest
+    expose:
+      - 8761
+    ports:
+      - 8761:8761
+    networks:
+      - pdb-networks
+
+  stock-service:
+    container_name: stock-service
+    build:
+      context: .
+      dockerfile: stock-service/Dockerfile
+    image: raminorujov/stock-service:latest
+    expose:
+      - 9090
+    ports:
+      - 0:9090
+    networks:
+      - pdb-networks
+    depends_on:
+      - discovery-service
+
+  user-service:
+    container_name: user-service
+    build:
+      context: .
+      dockerfile: user-service/Dockerfile
+    image: raminorujov/user-service:latest
+    expose:
+      - 9190
+    ports:
+      - 0:9190
+    networks:
+      - pdb-networks
+    depends_on:
+      - discovery-service
+
+  config-server:
+    container_name: config-server
+    build:
+      context: .
+      dockerfile: config-server/Dockerfile
+    image: raminorujov/config-server:latest
+    expose:
+      - 8888
+    ports:
+      - 0:8888
+    networks:
+      - pdb-networks
+    depends_on:
+      - discovery-service
+
+
+  gateway-service:
+    container_name: gateway-service
+    build:
+      context: .
+      dockerfile: gateway-service/Dockerfile
+    image: raminorujov/gateway-service:latest
+    expose:
+      - 8080
+    ports:
+      - 8080:8080
+    networks:
+      - pdb-networks
+    depends_on:
+      - discovery-service
+      - config-server
+
+
+networks:
+  pdb-networks:
+

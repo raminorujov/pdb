@@ -1,0 +1,31 @@
+spring:
+  profiles :
+    active : prod
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://discovery-service:8761/eureka/
+
+zuul :
+  routes:
+
+    user-service:
+      serviceId: user-service
+      path: /user/**
+      stripPrefix: false
+
+    stock-service:
+      serviceId: stock-service
+      path: /stock/**
+      stripPrefix: false
+
+    user-stock-service:
+      serviceId: user-stock-service
+      path: /user-stock/**
+      stripPrefix: false
+
+  sensitiveHeaders : Authorization
+
+
+

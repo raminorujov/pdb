@@ -1,0 +1,20 @@
+spring:
+  application :
+    name : config-server
+
+  profiles :
+    active : native
+
+  cloud :
+    config:
+      server :
+        native :
+          search-locations : classpath:/pdb-config/{application}
+
+server :
+  port : 0
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
