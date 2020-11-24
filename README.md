@@ -22,3 +22,4 @@ Used technology stack:
 * Lombok
 
 Architecture diagram
+![Diagram](https://raw.githubusercontent.com/raminorujov/pdb/master/docs/diagram.png)
