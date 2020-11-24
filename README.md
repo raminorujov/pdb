@@ -20,3 +20,5 @@ Used technology stack:
 * JWT Token
 * Docker 
 * Lombok
+
+Architecture diagram
